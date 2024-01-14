@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Interview</title>
+
+	<style>
+		h1 {
+			color: red;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Обновить страницу Ctrl + R</h1>
+
+
+	<script>
+		// Функция для проверки введенного значения
+		function checkInput(value, type) {
+			// Если значение пустое
+			if (!value || (value.trim() === "")) {
+				return false;
+			}
+			// Если тип text проверяем, не является ли числом
+			if (type === "text") {
+				if (isNaN(Number(value))) {
+					// Если значение не является числом, возвращаем его
+					return value;
+				}
+				else {
+					return false;
+				}
+			}
+			// Если тип number проверяем, является ли числом
+			if (type === "number") {
+				if (!isNaN(Number(value))) {
+					// Если значение является числом, возвращаем его
+					return value;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+
+		// Запрашиваем фамилию, имя и отчество 
+		let lastName = prompt("Введите вашу фамилию");
+		lastName = checkInput(lastName, "text");
+		// Повторяем запрос, пока не получим корректное значение
+		while (lastName === false) {
+			alert("Пожалуйста, введите только текст");
+			lastName = prompt("Введите вашу фамилию");
+			lastName = checkInput(lastName, "text");
+		}
+		if (lastName === null) {
+			alert("Вы отменили ввод");
+		}
+
+		let firstName = prompt("Введите ваше имя");
+		firstName = checkInput(firstName, "text");
+		while (firstName === false) {
+			alert("Пожалуйста, введите только текст");
+			firstName = prompt("Введите ваше имя");
+			firstName = checkInput(firstName, "text");
+		}
+		if (firstName === null) {
+			alert("Вы отменили ввод");
+		}
+
+		let middleName = prompt("Введите ваше отчество");
+		middleName = checkInput(middleName, "text");
+		while (middleName === false) {
+			alert("Пожалуйста, введите только текст");
+			middleName = prompt("Введите ваше отчество");
+			middleName = checkInput(middleName, "text");
+		}
+		if (middleName === null) {
+			alert("Вы отменили ввод");
+		}
+
+		// Запрашиваем возраст пользователя в годах
+		let age = prompt("Введите ваш возраст в годах");
+		// Проверяем введенное значение
+		age = checkInput(age, "number");
+		while (age === false) {
+			alert("Пожалуйста, введите только число");
+			age = prompt("Введите ваш возраст в годах");
+			age = checkInput(age, "number");
+		}
+
+		// Проверяем на совершеннолетие
+		let isAdult = age > 18 ? "Вы уже совершеннолетний" : "Вы еще не совершеннолетний";
+
+		// Перевод возраста  в дни
+		let ageInDays = age * 365;
+
+		// Запрашиваем пол пользователя
+		let isMale = confirm("Ваш пол - мужской?");
+		let gender = isMale ? "мужской" : "женский";
+
+		// Проверяем на пенсионера
+		let isRetired = age >= 60 ? "да" : "нет";
+
+		// Выводим анкету
+		alert("Ваше ФИО: " + lastName + " " + firstName + " " + middleName +
+		"\nВаш возраст в годах: " + age + 
+		"\nВаш возраст в днях: " + ageInDays + 
+		"\n" + isAdult + "\nВаш пол: " + gender + "\nВы на пенсии: " + isRetired);
+	</script>
+</body>
+
+</html>
