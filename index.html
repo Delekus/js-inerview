@@ -37,7 +37,7 @@
 			}
 			// Если тип number проверяем, является ли числом
 			if (type === "number") {
-				if (!isNaN(Number(value))) {
+				if(!isNaN(Number(value)) && value > 0 && value <= 100) {
 					// Если значение является числом, возвращаем его
 					return value;
 				}
@@ -88,7 +88,7 @@
 		age = checkInput(age, "number");
 		while (age === false) {
 			alert("Пожалуйста, введите только число");
-			age = prompt("Введите ваш возраст в годах");
+			age = prompt("Введите ваш возраст в годах в пределах от 0 до 100");
 			age = checkInput(age, "number");
 		}
 
